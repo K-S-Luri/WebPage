@@ -9,8 +9,8 @@ body {
     padding: 0;
     margin: 0;
     background-color: #E0E0E0;
-    text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 130%;
+    -webkit-text-size-adjust: 130%;
 }
 
 div {
@@ -40,7 +40,6 @@ div.menu-bar div.title {
 
 div.menu-bar div.menu {
     display: flex;
-    /* justify-content: space-between; */
     height: 100%;
     font-size: 20px;
     /* line-height: 80px; */
