@@ -9,8 +9,8 @@ body {
     padding: 0;
     margin: 0;
     background-color: #E0E0E0;
-    text-size-adjust: 120%;
-    -webkit-text-size-adjust: 120%;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 div {
