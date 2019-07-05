@@ -21,7 +21,7 @@ div.menu-bar {
     color: #DDDDDD;
     height: 80px;
     box-sizing: border-box;
-    width: 100%;
+    width: 100vw;
     padding-left: 30px;
     display: flex;
     justify-content: space-between;
