@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
 p {
     margin: 0;
     padding: 0;
     font-size: 20px;
     line-height: 1.8;
+}
+
+p.space-bottom {
+    margin-bottom: 1em;
 }
 
 body {
@@ -32,8 +38,10 @@ div.menu-bar {
     top: 0px;
 }
 
-div.menu-bar div.title {
+div.menu-bar a.title {
     /* line-height: 80px; */
+    text-decoration: none;
+    color: #DDDDDD;
     font-size: 22px;
     font-family: "Comfortaa";
 }
@@ -45,9 +53,11 @@ div.menu-bar div.menu {
     /* line-height: 80px; */
 }
 
-div.menu div.menu-item {
+div.menu .menu-item {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: #DDDDDD;
     /* margin-left: 20px;
     margin-right: 20px;  */
     height: 100%;
@@ -55,7 +65,7 @@ div.menu div.menu-item {
     padding-right: 20px;
 }
 
-div.menu div.menu-item:hover {
+div.menu .menu-item:hover {
     background-color: rgb(29, 172, 216);
 }
 
@@ -70,4 +80,15 @@ div.content {
 h1 {
     padding-bottom: 10px;
     border-bottom: 5px #7278c7 solid;
+}
+
+a.button{
+    display: inline-block;
+    background-color: chartreuse;
+    color: black;
+    text-decoration: none;
+    padding: 5px 15px;
+    /* font-family: "Lato"; */
+    font-size: 150%;
+    /* font-weight: bold; */
 }

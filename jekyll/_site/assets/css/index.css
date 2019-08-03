@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+p {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+p.space-bottom {
+    margin-bottom: 1em;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #E0E0E0;
+    text-size-adjust: 130%;
+    -webkit-text-size-adjust: 130%;
+}
+
+div {
+    padding: 0;
+    margin: 0;
+}
+
+div.menu-bar {
+    background-color: #333333EE;
+    color: #DDDDDD;
+    height: 80px;
+    box-sizing: border-box;
+    width: 100vw;
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+}
+
+div.menu-bar a.title {
+    /* line-height: 80px; */
+    text-decoration: none;
+    color: #DDDDDD;
+    font-size: 22px;
+    font-family: "Comfortaa";
+}
+
+div.menu-bar div.menu {
+    display: flex;
+    height: 100%;
+    font-size: 20px;
+    /* line-height: 80px; */
+}
+
+div.menu .menu-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #DDDDDD;
+    /* margin-left: 20px;
+    margin-right: 20px;  */
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+div.menu .menu-item:hover {
+    background-color: rgb(29, 172, 216);
+}
+
+div.content {
+    margin: 90px auto 0 auto;
+    padding: 20px;
+    background-color: white;
+    width: 90vw;
+    max-width: 1200px;
+}
+
+h1 {
+    padding-bottom: 10px;
+    border-bottom: 5px #7278c7 solid;
+}
+
+a.button{
+    display: inline-block;
+    background-color: chartreuse;
+    color: black;
+    text-decoration: none;
+    padding: 5px 15px;
+    /* font-family: "Lato"; */
+    font-size: 150%;
+    /* font-weight: bold; */
+}
