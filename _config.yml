@@ -1,1 +1,2 @@
 baseurl: "/webPage"
+exclude: ["readme.md"]
