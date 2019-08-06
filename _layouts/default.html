@@ -4,6 +4,16 @@
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/index.css">
   <link href="https://fonts.googleapis.com/css?family=Comfortaa|Righteous&display=swap" rel="stylesheet">
+  {% unless page.access-counter %}
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("show-counter") !== "true") {
+          const counter = document.getElementById("access-counter-id");
+          counter.classList.add("access-counter-hidden");
+        }
+      })
+    </script>
+  {% endunless %}
 </head>
 <body>
   <div class="menu-bar">
@@ -26,4 +36,9 @@
   <div class="content">
     {{ content }}
   </div>
+  <!-- FC2カウンター ここから -->
+  <div id="access-counter-id" class="access-counter-base">
+    <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=36318419&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=36318419&main=1" /></noscript>
+  </div>
+  <!-- FC2カウンター ここまで -->
 </body>

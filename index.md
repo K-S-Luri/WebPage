@@ -9,3 +9,5 @@ title: NMLibrary's page
 あなたは001000番目の旅人です
 
 キリ番踏み逃げ禁止！
+
+[設定](config.html)
