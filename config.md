@@ -4,7 +4,9 @@ title: NMLibrary's page
 access-counter: true
 ---
 # 設定
-アクセスカウンターの表示設定
+### アクセスカウンターの表示設定
+下のアクセスカウンターは、実はこのサイト全体で動いています。
+「表示する」にすると、全ページでカウンターが表示されます。
 <script type="text/javascript">
   function save(){
     const button_true = document.getElementById("show-counter-true");

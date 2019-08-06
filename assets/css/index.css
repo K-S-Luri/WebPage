@@ -85,7 +85,12 @@ h1 {
     line-height: 1;
 }
 
-a.button{
+h3 {
+    padding: 0;
+    margin: 0;
+}
+
+a.button {
     display: inline-block;
     background-color: chartreuse;
     color: black;
@@ -96,25 +101,25 @@ a.button{
     /* font-weight: bold; */
 }
 
-li.problem{
+li.problem {
     padding-bottom: 10px;
 }
 
-table{
+table {
     border-collapse: collapse;
     border: 2px solid;
 }
 
-td{
+td {
     padding: 8px 0 8px 8px;
     border: 1px solid;
 }
 
-div.access-counter-base{
+div.access-counter-base {
     padding: 10px;
     text-align: center;
 }
 
-div.access-counter-hidden{
+div.access-counter-hidden {
     display: none;
 }
