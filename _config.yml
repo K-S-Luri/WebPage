@@ -1,2 +1,3 @@
 baseurl: "/webPage"
 exclude: ["readme.md"]
+livereload: true
