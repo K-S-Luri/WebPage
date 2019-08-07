@@ -1,4 +1,12 @@
 - contest: ABC
+  contest-number: "076"
+  id-in-contest: D
+  title: AtCoder Express
+  url: https://atcoder.jp/contests/abc076/tasks/abc076_d
+  comment: | 
+    有名な400最上位問題。400適正には絶対無理と思って挑むとそうでもないが、
+    そうはいっても考察も実装も難しい。
+- contest: ABC
   contest-number: "061"
   id-in-contest: D
   title: Score Attack
@@ -7,12 +15,59 @@
     負閉路検出をしたいことがわかるとベルマンフォードを使いたくなるが、
     単にベルマンフォードをするだけでは反例がけっこうできてしまい厄介。
 - contest: ABC
+  contest-number: "075"
+  id-in-contest: D
+  title: Axis-Parallel Rectangle
+  url: https://atcoder.jp/contests/abc075/tasks/abc075_d
+  comment: | 
+    解説によると5乗まで間に合うのでわりと大胆にやってもよいようだが、
+    それにしても探索の方法を考える必要がありそれなりに難しい。
+- contest: ABC
+  contest-number: "089"
+  id-in-contest: D
+  title: Practical Skill Test
+  url: https://atcoder.jp/contests/abc089/tasks/abc089_d
+  comment: | 
+    計算量を減らすため、Dで割ったあまりごとに累積和を計算しておくという
+    発想が難しい。
+- contest: ABC
+  contest-number: "080"
+  id-in-contest: D
+  title: Recording
+  url: https://atcoder.jp/contests/abc080/tasks/abc080_d
+  comment: | 
+    チャンネルごとに録画機を使っているかどうか記録して最大値を足す。
+    問題文を整理するのがやや大変。
+- contest: ARC
+  contest-number: "078"
+  id-in-contest: D
+  title: Fennec VS. Snuke
+  url: https://atcoder.jp/contests/arc078/tasks/arc078_b
+  comment: | 
+    とりあえず互いにぶつかりあって陣地を増やすのが最適なのだが、
+    それに気づくのがやや難しく、反例にやられてしまう。
+- contest: ABC
+  contest-number: "099"
+  id-in-contest: D
+  title: Good Grid
+  url: https://atcoder.jp/contests/abc099/tasks/abc099_d
+  comment: | 
+    あまりが0, 1, 2のマスをまとめ、ありうる配色を全探索する。
+- contest: ABC
   contest-number: "054"
   id-in-contest: D
   title: Mixing Experiment
   url: https://atcoder.jp/contests/abc054/tasks/abc054_d
   comment: | 
     各薬品の在庫は1つ。スタンダードにDPをすればよい。
+- contest: ABC
+  contest-number: "100"
+  id-in-contest: D
+  title: Patisserie ABC
+  url: https://atcoder.jp/contests/abc100/tasks/abc100_d
+  comment: | 
+    なぜ絶対値を最大化するのか謎だが、+と-を3種類、合計8通りを全部試してみればよい。
+    これに気づくのがやや難しい。
 - contest: ABC
   contest-number: "057"
   id-in-contest: D
@@ -21,9 +76,77 @@
   comment: | 
     基本は個数を少なく取ったほうが得であることがすぐわかる。あとは組み合わせの計算と例外処理。
 - contest: ABC
+  contest-number: "073"
+  id-in-contest: D
+  title: joisino's travel
+  url: https://atcoder.jp/contests/abc073/tasks/abc073_d
+  comment: | 
+    Rが8までなので、訪れる順番の順列8!通りを全探索できることが重要。
+    順列全探索は400点相当としては実装が大変めかもしれない。
+- contest: ABC
+  contest-number: "096"
+  id-in-contest: D
+  title: Five, Five Everywhere
+  url: https://atcoder.jp/contests/abc096/tasks/abc096_d
+  comment: | 
+    数学系の問題。5個なのだから5の倍数が作れないかと思うと、かなり近いところに来ている。
+- contest: ABC
+  contest-number: "085"
+  id-in-contest: D
+  title: Katana Thrower
+  url: https://atcoder.jp/contests/abc085/tasks/abc085_d
+  comment: | 
+    ARC075 D "Widespread"とは似て非なる問題で、こちらのほうが簡単。
+    強い刀で斬りまくった後投げつけまくればOK。
+- contest: ABC
   contest-number: "051"
   id-in-contest: D
   title: Candidates of No Shortest Paths
   url: https://atcoder.jp/contests/abc051/tasks/abc051_d
   comment: | 
     各点でダイクストラを行い、各辺の両端の頂点の最短距離の差が辺の長さになっていれば使われる。
+- contest: ABC
+  contest-number: "084"
+  id-in-contest: D
+  title: 2017-like Number
+  url: https://atcoder.jp/contests/abc084/tasks/abc084_d
+  comment: | 
+    出てくる数は100000までなので、素数を列挙し、2017に似た数を列挙しておけばよい。
+    300や400にありがちな累積和の問題。
+- contest: ABC
+  contest-number: "064"
+  id-in-contest: D
+  title: Insertion
+  url: https://atcoder.jp/contests/abc064/tasks/abc064_d
+  comment: | 
+    開きを+1、閉じを-1とし、最初からみたときの累積和が0を下回らず、
+    最後で0になるというカッコ列の基本。
+- contest: ARC
+  contest-number: "080"
+  id-in-contest: C
+  title: 4-adjacent
+  url: https://atcoder.jp/contests/arc080/tasks/arc080_a
+  comment: | 
+    珍しいCの400。2の倍数と4の倍数だけ見ればよい。
+- contest: ABC
+  contest-number: "088"
+  id-in-contest: D
+  title: Grid Repainting
+  url: https://atcoder.jp/contests/abc088/tasks/abc088_d
+  comment: | 
+    最短距離を求めてその道以外全部黒に塗るだけ。
+- contest: ABC
+  contest-number: "079"
+  id-in-contest: D
+  title: Wall
+  url: https://atcoder.jp/contests/abc079/tasks/abc079_d
+  comment: | 
+    ダイクストラでもワーシャルフロイドでもいいのである数字を1に変えるコストだけ
+    先に計算しておけば勝てる。
+- contest: ABC
+  contest-number: "070"
+  id-in-contest: D
+  title: Transit Tree Path
+  url: https://atcoder.jp/contests/abc070/tasks/abc070_d
+  comment: | 
+    Kを始点に最短経路を求めればよいだけ。DFSBFSがO(N)だが何も考えずダイクストラでもたぶん間に合う。
