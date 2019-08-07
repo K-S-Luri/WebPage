@@ -69,13 +69,6 @@
     なぜ絶対値を最大化するのか謎だが、+と-を3種類、合計8通りを全部試してみればよい。
     これに気づくのがやや難しい。
 - contest: ABC
-  contest-number: "057"
-  id-in-contest: D
-  title: Maximum Average Sets
-  url: https://atcoder.jp/contests/abc057/tasks/abc057_d
-  comment: | 
-    基本は個数を少なく取ったほうが得であることがすぐわかる。あとは組み合わせの計算と例外処理。
-- contest: ABC
   contest-number: "073"
   id-in-contest: D
   title: joisino's travel
@@ -90,6 +83,13 @@
   url: https://atcoder.jp/contests/abc096/tasks/abc096_d
   comment: | 
     数学系の問題。5個なのだから5の倍数が作れないかと思うと、かなり近いところに来ている。
+- contest: ABC
+  contest-number: "057"
+  id-in-contest: D
+  title: Maximum Average Sets
+  url: https://atcoder.jp/contests/abc057/tasks/abc057_d
+  comment: | 
+    基本は個数を少なく取ったほうが得であることがすぐわかる。あとは組み合わせの計算と例外処理。
 - contest: ABC
   contest-number: "085"
   id-in-contest: D
