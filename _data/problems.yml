@@ -144,6 +144,13 @@
     ダイクストラでもワーシャルフロイドでもいいのである数字を1に変えるコストだけ
     先に計算しておけば勝てる。
 - contest: ABC
+  contest-number: "103"
+  id-in-contest: D
+  title: Islands War
+  url: https://atcoder.jp/contests/abc103/tasks/abc103_d
+  comment: | 
+    右側でソートして絶対必要なところを取り除いていくだけ。300でもありえそう。
+- contest: ABC
   contest-number: "070"
   id-in-contest: D
   title: Transit Tree Path
