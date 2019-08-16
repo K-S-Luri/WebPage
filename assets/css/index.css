@@ -30,7 +30,7 @@ div.menu-bar {
     color: #DDDDDD;
     height: 80px;
     box-sizing: border-box;
-    width: 100vw;
+    width: 100%;
     padding-left: 30px;
     display: flex;
     justify-content: space-between;
