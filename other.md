@@ -2,4 +2,6 @@
 layout: default
 title: NMLibrary's page
 ---
-# まだないよ
+# 雑多なもの
+
+[トーナメント](tournament.html)

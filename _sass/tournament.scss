@@ -1,0 +1,17 @@
+table.tour-match {
+    border-collapse: collapse;
+    border: 2px solid;
+
+    td{
+        &.tour-name{
+            padding: 0px 8px 0px 8px;
+        }
+        &.tour-set{
+            padding: 0px 2px 0px 2px;
+        }
+
+        height: 25px;
+        line-height: 10px;
+        border: 1px solid;
+    }
+}

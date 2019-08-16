@@ -17,17 +17,17 @@ title: NMLibrary's page
   </li>
 {% endfor %}
 </ul>
-<table>
+<table class="difficulty">
 {% for prob in site.data.problems %}
-  <tr align="left">
-    <td>
+  <tr>
+    <td class="difficulty-data">
       <a href="{{ prob.url }}">
         {{ prob.contest }}{{ prob.contest-number }}
         {{ prob.id-in-contest}}
         - {{ prob.title }}
       </a>
     </td>
-    <td>
+    <td class="difficulty-data">
       {{ prob.comment }}
     </td>
   </tr>
