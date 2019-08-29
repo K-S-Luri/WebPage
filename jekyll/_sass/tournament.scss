@@ -6,8 +6,16 @@ table.tour-match {
         &.tour-name{
             padding: 0px 8px 0px 8px;
         }
-        &.tour-set{
+        &.tour-point, &.tour-miss{
             padding: 0px 2px 0px 2px;
+        }
+        &.tour-point{
+            background-color: hsl(330, 80, 80);
+            // color: white;
+        }
+        &.tour-miss{
+            background-color: hsl(200, 80, 80);
+            // color: white;
         }
 
         height: 25px;
