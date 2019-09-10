@@ -1,20 +1,28 @@
-class Player {
-    name: string | null;
-    point: number | null;
-    miss: number | null;
+interface TrPlaceResult {
+    point: number;
+    miss: number;
+    rank: number
+}
 
-    constructor (name: string | null, point: number | null, miss: number | null) {
+class TrPlace {
+    name: string;
+    result: TrPlaceResult | null;
+
+    constructor (name: string) {
         this.name = name;
-        this.point = point;
-        this.miss = miss;
+        this.result = null;
+    }
+
+    public setResult(point: number, miss: number, rank: number): void {
+        this.result = {point: point, miss: miss, rank: rank };
     }
 }
 
-function buildTournament(players: Player[]): void {
+function buildTournament(places: (TrPlace | null)[]): void {
     let base = document.getElementById("tournament");
     let tableHTML = '<table class="tour-match">';
-    for (let i = 0; i < players.length; i++) {
-        tableHTML += makeOneTr(players[i]);
+    for (let i = 0; i < places.length; i++) {
+        tableHTML += makeOneTr(places[i]);
     }
     tableHTML += "</table>";
     if (base != null) {
@@ -22,27 +30,34 @@ function buildTournament(players: Player[]): void {
     }
 }
 
-function makeOneTr(player: Player): string {
+function makeOneTr(place: TrPlace |  null): string {
     let nameString = "";
-    if (player.name != null) {
-        nameString = player.name;
-    }
     let pointString = "";
-    if (player.point != null) {
-        pointString = player.point.toString();
-    }
     let missString = "";
-    if (player.miss != null) {
-        missString = player.miss.toString();
+    let rankString = "";
+    if (place != null) {
+        nameString = place.name;
+        if (place.result != null) {
+            pointString = place.result.point.toString();
+            missString = place.result.miss.toString();
+            rankString = place.result.rank.toString();
+        }
     }
     return `<tr>
     <td class="tour-name">${nameString}</td>
     <td class="tour-point">${pointString}</td>
     <td class="tour-miss">${missString}</td>
+    <td class="tour-rank">${rankString}</td>
     </tr>`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    buildTournament([new Player("wktk", 7, 0), new Player("ktkr", 7, 1), new Player("今北sangyou", 5, 2), new Player(null, null, null)]);
-    buildTournament([new Player("wktk", 7, 0), new Player("ktkr", 7, 1), new Player("今北sangyou", 5, 2), new Player("kwsk", 4, 3)]);
+    const place1:TrPlace = new TrPlace("wktk");
+    const place2:TrPlace = new TrPlace("ktkr");
+    const place3:TrPlace = new TrPlace("あいうえおかきくけこ");
+    const place4 = null;
+    place1.setResult(7, 0, 1);
+    place2.setResult(3, 2, 4);
+    buildTournament([place1, place2, place3, place4]);
+    // buildTournament([new TrPlace("wktk", 7, 0), new TrPlace("ktkr", 7, 1), new TrPlace("今北sangyou", 5, 2), new TrPlace("kwsk", 4, 3)]);
 });

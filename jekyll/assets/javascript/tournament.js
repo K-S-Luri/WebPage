@@ -1,39 +1,47 @@
 "use strict";
-var Player = /** @class */ (function () {
-    function Player(name, point, miss) {
+var TrPlace = /** @class */ (function () {
+    function TrPlace(name) {
         this.name = name;
-        this.point = point;
-        this.miss = miss;
+        this.result = null;
     }
-    return Player;
+    TrPlace.prototype.setResult = function (point, miss, rank) {
+        this.result = { point: point, miss: miss, rank: rank };
+    };
+    return TrPlace;
 }());
-function buildTournament(players) {
+function buildTournament(places) {
     var base = document.getElementById("tournament");
     var tableHTML = '<table class="tour-match">';
-    for (var i = 0; i < players.length; i++) {
-        tableHTML += makeOneTr(players[i]);
+    for (var i = 0; i < places.length; i++) {
+        tableHTML += makeOneTr(places[i]);
     }
     tableHTML += "</table>";
     if (base != null) {
         base.insertAdjacentHTML('beforeend', tableHTML);
     }
 }
-function makeOneTr(player) {
+function makeOneTr(place) {
     var nameString = "";
-    if (player.name != null) {
-        nameString = player.name;
-    }
     var pointString = "";
-    if (player.point != null) {
-        pointString = player.point.toString();
-    }
     var missString = "";
-    if (player.miss != null) {
-        missString = player.miss.toString();
+    var rankString = "";
+    if (place != null) {
+        nameString = place.name;
+        if (place.result != null) {
+            pointString = place.result.point.toString();
+            missString = place.result.miss.toString();
+            rankString = place.result.rank.toString();
+        }
     }
-    return "<tr>\n    <td class=\"tour-name\">" + nameString + "</td>\n    <td class=\"tour-point\">" + pointString + "</td>\n    <td class=\"tour-miss\">" + missString + "</td>\n    </tr>";
+    return "<tr>\n    <td class=\"tour-name\">" + nameString + "</td>\n    <td class=\"tour-point\">" + pointString + "</td>\n    <td class=\"tour-miss\">" + missString + "</td>\n    <td class=\"tour-rank\">" + rankString + "</td>\n    </tr>";
 }
 document.addEventListener("DOMContentLoaded", function () {
-    buildTournament([new Player("wktk", 7, 0), new Player("ktkr", 7, 1), new Player("今北sangyou", 5, 2), new Player(null, null, null)]);
-    buildTournament([new Player("wktk", 7, 0), new Player("ktkr", 7, 1), new Player("今北sangyou", 5, 2), new Player("kwsk", 4, 3)]);
+    var place1 = new TrPlace("wktk");
+    var place2 = new TrPlace("ktkr");
+    var place3 = new TrPlace("あいうえおかきくけこ");
+    var place4 = null;
+    place1.setResult(7, 0, 1);
+    place2.setResult(3, 2, 4);
+    buildTournament([place1, place2, place3, place4]);
+    // buildTournament([new TrPlace("wktk", 7, 0), new TrPlace("ktkr", 7, 1), new TrPlace("今北sangyou", 5, 2), new TrPlace("kwsk", 4, 3)]);
 });
