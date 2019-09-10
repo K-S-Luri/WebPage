@@ -33,13 +33,14 @@ function makeOneTr(place) {
             rankString = place.result.rank.toString();
         }
     }
-    return "<tr>\n    <td class=\"tour-name\">" + nameString + "</td>\n    <td class=\"tour-point\">" + pointString + "</td>\n    <td class=\"tour-miss\">" + missString + "</td>\n    <td class=\"tour-rank\">" + rankString + "</td>\n    </tr>";
+    return "<tr>\n    <td class=\"tour-name\">" + nameString + "</td>\n    <td class=\"tour-point\">" + pointString + "-" + missString + "</td>\n    <td class=\"tour-rank\">" + rankString + "</td>\n    </tr>";
 }
 document.addEventListener("DOMContentLoaded", function () {
     var place1 = new TrPlace("wktk");
     var place2 = new TrPlace("ktkr");
-    var place3 = new TrPlace("あいうえおかきくけこ");
+    var place3 = new TrPlace("佐々木 忠次郎");
     var place4 = null;
+    buildTournament([place1, place2, place3, place4]);
     place1.setResult(7, 0, 1);
     place2.setResult(3, 2, 4);
     buildTournament([place1, place2, place3, place4]);

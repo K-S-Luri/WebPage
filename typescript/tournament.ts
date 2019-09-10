@@ -45,8 +45,7 @@ function makeOneTr(place: TrPlace |  null): string {
     }
     return `<tr>
     <td class="tour-name">${nameString}</td>
-    <td class="tour-point">${pointString}</td>
-    <td class="tour-miss">${missString}</td>
+    <td class="tour-point">${pointString}-${missString}</td>
     <td class="tour-rank">${rankString}</td>
     </tr>`;
 }
@@ -54,8 +53,9 @@ function makeOneTr(place: TrPlace |  null): string {
 document.addEventListener("DOMContentLoaded", () => {
     const place1:TrPlace = new TrPlace("wktk");
     const place2:TrPlace = new TrPlace("ktkr");
-    const place3:TrPlace = new TrPlace("あいうえおかきくけこ");
+    const place3:TrPlace = new TrPlace("佐々木 忠次郎");
     const place4 = null;
+    buildTournament([place1, place2, place3, place4]);
     place1.setResult(7, 0, 1);
     place2.setResult(3, 2, 4);
     buildTournament([place1, place2, place3, place4]);

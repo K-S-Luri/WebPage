@@ -1,13 +1,22 @@
 table.tour-match {
     border-collapse: collapse;
     border: 2px solid;
+    table-layout: fixed;
 
     td{
         &.tour-name{
             padding: 0px 8px 0px 8px;
+            $width: 120px;
+            width: $width;
+            max-width: $width;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
-        &.tour-point, &.tour-miss{
-            padding: 0px 2px 0px 2px;
+        &.tour-point, &.tour-miss, &.tour-rank{
+            padding: 0;
+            text-align: center;
+            width: 14px;
         }
         &.tour-point{
             background-color: hsl(330, 80, 80);
@@ -18,12 +27,13 @@ table.tour-match {
             // color: white;
         }
         &.tour-rank{
-            background-color: hsl(200, 80, 80);
+            background-color: hsl(120, 80, 80);
             // color: white;
         }
 
+        font-size: 18px;
         height: 25px;
-        line-height: 10px;
+        line-height: 25px;
         border: 1px solid;
     }
 }
