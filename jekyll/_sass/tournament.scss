@@ -13,22 +13,19 @@ table.tour-match {
             white-space: nowrap;
             text-overflow: ellipsis;
         }
-        &.tour-point, &.tour-miss, &.tour-rank{
+        &.tour-point, &.tour-rank{
             padding: 0;
             text-align: center;
-            width: 14px;
         }
         &.tour-point{
             background-color: hsl(330, 80, 80);
             // color: white;
-        }
-        &.tour-miss{
-            background-color: hsl(200, 80, 80);
-            // color: white;
+            width: 36px;
         }
         &.tour-rank{
             background-color: hsl(120, 80, 80);
             // color: white;
+            width: 16px;
         }
 
         font-size: 18px;
