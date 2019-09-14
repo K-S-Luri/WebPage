@@ -61,7 +61,7 @@ div.menu .menu-item {
 div.menu .menu-item:hover {
   background-color: #1dacd8; }
 
-div.content {
+#content {
   margin: 90px auto 0 auto;
   padding: 20px;
   background-color: white;
