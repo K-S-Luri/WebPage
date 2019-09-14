@@ -31,7 +31,8 @@ div.menu-bar {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 0px; }
+  top: 0px;
+  z-index: 10000; }
 
 div.menu-bar a.title {
   /* line-height: 80px; */
@@ -130,3 +131,6 @@ table.tour-match {
     table.tour-match td.tour-rank {
       background-color: #a3f5a3;
       width: 16px; }
+
+#tournament {
+  position: relative; }

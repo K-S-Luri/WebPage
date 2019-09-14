@@ -37,6 +37,7 @@ div.menu-bar {
     align-items: center;
     position: fixed;
     top: 0px;
+    z-index: 10000;
 }
 
 div.menu-bar a.title {
