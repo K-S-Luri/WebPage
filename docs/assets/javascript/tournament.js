@@ -11,6 +11,9 @@ var TrPlace = /** @class */ (function () {
 }());
 function buildTournament(places) {
     var base = document.getElementById("tournament");
+    if (base != null) {
+        base.style.width = "1000px";
+    }
     var tableHTML = '<table class="tour-match">';
     for (var i = 0; i < places.length; i++) {
         tableHTML += makeOneTr(places[i]);

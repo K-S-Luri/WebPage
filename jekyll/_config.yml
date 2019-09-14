@@ -1,3 +1,4 @@
 baseurl: "/webPage"
 exclude: ["readme.md"]
+destination: ../docs/
 livereload: true
