@@ -6,7 +6,7 @@ table.tour-match {
     td{
         &.tour-name{
             padding: 0px 8px 0px 8px;
-            $width: 120px;
+            $width: 106px;
             width: $width;
             max-width: $width;
             overflow: hidden;
@@ -28,9 +28,9 @@ table.tour-match {
             width: 16px;
         }
 
-        font-size: 18px;
-        height: 25px;
-        line-height: 25px;
+        font-size: 16px;
+        height: 22px;
+        line-height: 22px;
         border: 1px solid;
     }
 }

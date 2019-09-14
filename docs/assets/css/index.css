@@ -110,14 +110,14 @@ table.tour-match {
   border: 2px solid;
   table-layout: fixed; }
   table.tour-match td {
-    font-size: 18px;
-    height: 25px;
-    line-height: 25px;
+    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
     border: 1px solid; }
     table.tour-match td.tour-name {
       padding: 0px 8px 0px 8px;
-      width: 120px;
-      max-width: 120px;
+      width: 106px;
+      max-width: 106px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; }

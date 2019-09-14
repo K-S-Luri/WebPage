@@ -9,11 +9,26 @@ var TrPlace = /** @class */ (function () {
     };
     return TrPlace;
 }());
-function buildTournament(places) {
+function buildTournament() {
     var base = document.getElementById("tournament");
     if (base != null) {
         base.style.width = "1000px";
+        base.style.height = "1000px";
     }
+    var matches = document.getElementsByClassName("tour-match");
+    if (matches.length > 0) {
+        var match = matches[0];
+        var matchWidth = match.getBoundingClientRect().width;
+        var matchHeight = match.getBoundingClientRect().height;
+        console.log(matchWidth);
+        console.log(matchHeight);
+    }
+    else {
+        console.log("だめだよ");
+    }
+}
+function makeOneMatch(places) {
+    var base = document.getElementById("tournament");
     var tableHTML = '<table class="tour-match">';
     for (var i = 0; i < places.length; i++) {
         tableHTML += makeOneTr(places[i]);
@@ -43,9 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var place2 = new TrPlace("ktkr");
     var place3 = new TrPlace("佐々木 忠次郎");
     var place4 = null;
-    buildTournament([place1, place2, place3, place4]);
+    makeOneMatch([place1, place2, place3, place4]);
     place1.setResult(7, 0, 1);
     place2.setResult(3, 2, 4);
-    buildTournament([place1, place2, place3, place4]);
+    makeOneMatch([place1, place2, place3, place4]);
     // buildTournament([new TrPlace("wktk", 7, 0), new TrPlace("ktkr", 7, 1), new TrPlace("今北sangyou", 5, 2), new TrPlace("kwsk", 4, 3)]);
+    buildTournament();
 });
