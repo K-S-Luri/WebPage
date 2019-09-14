@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>NMLibrary's page</title>
+  <link rel="stylesheet" href="/webPage/assets/css/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa|Righteous&display=swap" rel="stylesheet">
+  
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("show-counter") !== "true") {
+          const counter = document.getElementById("access-counter-id");
+          counter.classList.add("access-counter-hidden");
+        }
+      })
+    </script>
+  
+</head>
+<body>
+  <div class="menu-bar">
+    <a class="title" href="/webPage/index.html">
+      NMLibrary's page    
+    </a>
+    <div class="menu">
+      <a class="menu-item" href="/webPage/difficulty/submenu1.html">
+        <div>
+          競技プログラミング
+        </div>
+      </a>
+      <a class="menu-item" href="/webPage/other.html">
+        <div>
+          その他
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="content">
+    <script src="/webPage/assets/javascript/tournament.js">
+</script>
+<div id="tournament">
+</div>
+  </div>
+  <!-- FC2カウンター ここから -->
+  <div id="access-counter-id" class="access-counter-base">
+    <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=36318419&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=36318419&main=1" /></noscript>
+  </div>
+  <!-- FC2カウンター ここまで -->
+</body>

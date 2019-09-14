@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>NMLibrary's page</title>
+  <link rel="stylesheet" href="/webPage/assets/css/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa|Righteous&display=swap" rel="stylesheet">
+  
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("show-counter") !== "true") {
+          const counter = document.getElementById("access-counter-id");
+          counter.classList.add("access-counter-hidden");
+        }
+      })
+    </script>
+  
+</head>
+<body>
+  <div class="menu-bar">
+    <a class="title" href="/webPage/index.html">
+      NMLibrary's page    
+    </a>
+    <div class="menu">
+      <a class="menu-item" href="/webPage/difficulty/submenu1.html">
+        <div>
+          競技プログラミング
+        </div>
+      </a>
+      <a class="menu-item" href="/webPage/other.html">
+        <div>
+          その他
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="content">
+    <h1 id="難易度表-atcoder400">難易度表: AtCoder400</h1>
+<ul>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc076/tasks/abc076_d">
+      ABC076
+      D
+      - AtCoder Express
+    </a>
+    <p>
+      有名な400最上位問題。400適正には絶対無理と思って挑むとそうでもないが、
+そうはいっても考察も実装も難しい。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc061/tasks/abc061_d">
+      ABC061
+      D
+      - Score Attack
+    </a>
+    <p>
+      負閉路検出をしたいことがわかるとベルマンフォードを使いたくなるが、
+単にベルマンフォードをするだけでは反例がけっこうできてしまい厄介。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc075/tasks/abc075_d">
+      ABC075
+      D
+      - Axis-Parallel Rectangle
+    </a>
+    <p>
+      解説によると5乗まで間に合うのでわりと大胆にやってもよいようだが、
+それにしても探索の方法を考える必要がありそれなりに難しい。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc089/tasks/abc089_d">
+      ABC089
+      D
+      - Practical Skill Test
+    </a>
+    <p>
+      計算量を減らすため、Dで割ったあまりごとに累積和を計算しておくという
+発想が難しい。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc080/tasks/abc080_d">
+      ABC080
+      D
+      - Recording
+    </a>
+    <p>
+      チャンネルごとに録画機を使っているかどうか記録して最大値を足す。
+問題文を整理するのがやや大変。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/arc078/tasks/arc078_b">
+      ARC078
+      D
+      - Fennec VS. Snuke
+    </a>
+    <p>
+      とりあえず互いにぶつかりあって陣地を増やすのが最適なのだが、
+それに気づくのがやや難しく、反例にやられてしまう。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc099/tasks/abc099_d">
+      ABC099
+      D
+      - Good Grid
+    </a>
+    <p>
+      あまりが0, 1, 2のマスをまとめ、ありうる配色を全探索する。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc054/tasks/abc054_d">
+      ABC054
+      D
+      - Mixing Experiment
+    </a>
+    <p>
+      各薬品の在庫は1つ。スタンダードにDPをすればよい。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc100/tasks/abc100_d">
+      ABC100
+      D
+      - Patisserie ABC
+    </a>
+    <p>
+      なぜ絶対値を最大化するのか謎だが、+と-を3種類、合計8通りを全部試してみればよい。
+これに気づくのがやや難しい。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc073/tasks/abc073_d">
+      ABC073
+      D
+      - joisino's travel
+    </a>
+    <p>
+      Rが8までなので、訪れる順番の順列8!通りを全探索できることが重要。
+順列全探索は400点相当としては実装が大変めかもしれない。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc096/tasks/abc096_d">
+      ABC096
+      D
+      - Five, Five Everywhere
+    </a>
+    <p>
+      数学系の問題。5個なのだから5の倍数が作れないかと思うと、かなり近いところに来ている。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc057/tasks/abc057_d">
+      ABC057
+      D
+      - Maximum Average Sets
+    </a>
+    <p>
+      基本は個数を少なく取ったほうが得であることがすぐわかる。あとは組み合わせの計算と例外処理。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc085/tasks/abc085_d">
+      ABC085
+      D
+      - Katana Thrower
+    </a>
+    <p>
+      ARC075 D "Widespread"とは似て非なる問題で、こちらのほうが簡単。
+強い刀で斬りまくった後投げつけまくればOK。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc051/tasks/abc051_d">
+      ABC051
+      D
+      - Candidates of No Shortest Paths
+    </a>
+    <p>
+      各点でダイクストラを行い、各辺の両端の頂点の最短距離の差が辺の長さになっていれば使われる。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc084/tasks/abc084_d">
+      ABC084
+      D
+      - 2017-like Number
+    </a>
+    <p>
+      出てくる数は100000までなので、素数を列挙し、2017に似た数を列挙しておけばよい。
+300や400にありがちな累積和の問題。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc064/tasks/abc064_d">
+      ABC064
+      D
+      - Insertion
+    </a>
+    <p>
+      開きを+1、閉じを-1とし、最初からみたときの累積和が0を下回らず、
+最後で0になるというカッコ列の基本。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/arc080/tasks/arc080_a">
+      ARC080
+      C
+      - 4-adjacent
+    </a>
+    <p>
+      珍しいCの400。2の倍数と4の倍数だけ見ればよい。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc088/tasks/abc088_d">
+      ABC088
+      D
+      - Grid Repainting
+    </a>
+    <p>
+      最短距離を求めてその道以外全部黒に塗るだけ。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc079/tasks/abc079_d">
+      ABC079
+      D
+      - Wall
+    </a>
+    <p>
+      ダイクストラでもワーシャルフロイドでもいいのである数字を1に変えるコストだけ
+先に計算しておけば勝てる。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc103/tasks/abc103_d">
+      ABC103
+      D
+      - Islands War
+    </a>
+    <p>
+      右側でソートして絶対必要なところを取り除いていくだけ。300でもありえそう。
+
+    </p>
+  </li>
+
+  <li class="problem">
+    <a href="https://atcoder.jp/contests/abc070/tasks/abc070_d">
+      ABC070
+      D
+      - Transit Tree Path
+    </a>
+    <p>
+      Kを始点に最短経路を求めればよいだけ。DFSBFSがO(N)だが何も考えずダイクストラでもたぶん間に合う。
+    </p>
+  </li>
+
+</ul>
+<table class="difficulty">
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc076/tasks/abc076_d">
+        ABC076
+        D
+        - AtCoder Express
+      </a>
+    </td>
+    <td class="difficulty-data">
+      有名な400最上位問題。400適正には絶対無理と思って挑むとそうでもないが、
+そうはいっても考察も実装も難しい。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc061/tasks/abc061_d">
+        ABC061
+        D
+        - Score Attack
+      </a>
+    </td>
+    <td class="difficulty-data">
+      負閉路検出をしたいことがわかるとベルマンフォードを使いたくなるが、
+単にベルマンフォードをするだけでは反例がけっこうできてしまい厄介。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc075/tasks/abc075_d">
+        ABC075
+        D
+        - Axis-Parallel Rectangle
+      </a>
+    </td>
+    <td class="difficulty-data">
+      解説によると5乗まで間に合うのでわりと大胆にやってもよいようだが、
+それにしても探索の方法を考える必要がありそれなりに難しい。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc089/tasks/abc089_d">
+        ABC089
+        D
+        - Practical Skill Test
+      </a>
+    </td>
+    <td class="difficulty-data">
+      計算量を減らすため、Dで割ったあまりごとに累積和を計算しておくという
+発想が難しい。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc080/tasks/abc080_d">
+        ABC080
+        D
+        - Recording
+      </a>
+    </td>
+    <td class="difficulty-data">
+      チャンネルごとに録画機を使っているかどうか記録して最大値を足す。
+問題文を整理するのがやや大変。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/arc078/tasks/arc078_b">
+        ARC078
+        D
+        - Fennec VS. Snuke
+      </a>
+    </td>
+    <td class="difficulty-data">
+      とりあえず互いにぶつかりあって陣地を増やすのが最適なのだが、
+それに気づくのがやや難しく、反例にやられてしまう。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc099/tasks/abc099_d">
+        ABC099
+        D
+        - Good Grid
+      </a>
+    </td>
+    <td class="difficulty-data">
+      あまりが0, 1, 2のマスをまとめ、ありうる配色を全探索する。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc054/tasks/abc054_d">
+        ABC054
+        D
+        - Mixing Experiment
+      </a>
+    </td>
+    <td class="difficulty-data">
+      各薬品の在庫は1つ。スタンダードにDPをすればよい。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc100/tasks/abc100_d">
+        ABC100
+        D
+        - Patisserie ABC
+      </a>
+    </td>
+    <td class="difficulty-data">
+      なぜ絶対値を最大化するのか謎だが、+と-を3種類、合計8通りを全部試してみればよい。
+これに気づくのがやや難しい。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc073/tasks/abc073_d">
+        ABC073
+        D
+        - joisino's travel
+      </a>
+    </td>
+    <td class="difficulty-data">
+      Rが8までなので、訪れる順番の順列8!通りを全探索できることが重要。
+順列全探索は400点相当としては実装が大変めかもしれない。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc096/tasks/abc096_d">
+        ABC096
+        D
+        - Five, Five Everywhere
+      </a>
+    </td>
+    <td class="difficulty-data">
+      数学系の問題。5個なのだから5の倍数が作れないかと思うと、かなり近いところに来ている。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc057/tasks/abc057_d">
+        ABC057
+        D
+        - Maximum Average Sets
+      </a>
+    </td>
+    <td class="difficulty-data">
+      基本は個数を少なく取ったほうが得であることがすぐわかる。あとは組み合わせの計算と例外処理。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc085/tasks/abc085_d">
+        ABC085
+        D
+        - Katana Thrower
+      </a>
+    </td>
+    <td class="difficulty-data">
+      ARC075 D "Widespread"とは似て非なる問題で、こちらのほうが簡単。
+強い刀で斬りまくった後投げつけまくればOK。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc051/tasks/abc051_d">
+        ABC051
+        D
+        - Candidates of No Shortest Paths
+      </a>
+    </td>
+    <td class="difficulty-data">
+      各点でダイクストラを行い、各辺の両端の頂点の最短距離の差が辺の長さになっていれば使われる。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc084/tasks/abc084_d">
+        ABC084
+        D
+        - 2017-like Number
+      </a>
+    </td>
+    <td class="difficulty-data">
+      出てくる数は100000までなので、素数を列挙し、2017に似た数を列挙しておけばよい。
+300や400にありがちな累積和の問題。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc064/tasks/abc064_d">
+        ABC064
+        D
+        - Insertion
+      </a>
+    </td>
+    <td class="difficulty-data">
+      開きを+1、閉じを-1とし、最初からみたときの累積和が0を下回らず、
+最後で0になるというカッコ列の基本。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/arc080/tasks/arc080_a">
+        ARC080
+        C
+        - 4-adjacent
+      </a>
+    </td>
+    <td class="difficulty-data">
+      珍しいCの400。2の倍数と4の倍数だけ見ればよい。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc088/tasks/abc088_d">
+        ABC088
+        D
+        - Grid Repainting
+      </a>
+    </td>
+    <td class="difficulty-data">
+      最短距離を求めてその道以外全部黒に塗るだけ。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc079/tasks/abc079_d">
+        ABC079
+        D
+        - Wall
+      </a>
+    </td>
+    <td class="difficulty-data">
+      ダイクストラでもワーシャルフロイドでもいいのである数字を1に変えるコストだけ
+先に計算しておけば勝てる。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc103/tasks/abc103_d">
+        ABC103
+        D
+        - Islands War
+      </a>
+    </td>
+    <td class="difficulty-data">
+      右側でソートして絶対必要なところを取り除いていくだけ。300でもありえそう。
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="difficulty-data">
+      <a href="https://atcoder.jp/contests/abc070/tasks/abc070_d">
+        ABC070
+        D
+        - Transit Tree Path
+      </a>
+    </td>
+    <td class="difficulty-data">
+      Kを始点に最短経路を求めればよいだけ。DFSBFSがO(N)だが何も考えずダイクストラでもたぶん間に合う。
+    </td>
+  </tr>
+
+</table>
+
+  </div>
+  <!-- FC2カウンター ここから -->
+  <div id="access-counter-id" class="access-counter-base">
+    <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=36318419&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=36318419&main=1" /></noscript>
+  </div>
+  <!-- FC2カウンター ここまで -->
+</body>

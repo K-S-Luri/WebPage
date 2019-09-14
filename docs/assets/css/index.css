@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+p {
+  margin: 0;
+  padding: 0; }
+
+p.space-bottom {
+  margin-bottom: 1em; }
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #E0E0E0;
+  text-size-adjust: 130%;
+  -webkit-text-size-adjust: 130%;
+  font-size: 20px;
+  line-height: 1.8;
+  font-family: "Lato"; }
+
+div {
+  padding: 0;
+  margin: 0; }
+
+div.menu-bar {
+  background-color: #333333EE;
+  color: #DDDDDD;
+  height: 80px;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0px; }
+
+div.menu-bar a.title {
+  /* line-height: 80px; */
+  text-decoration: none;
+  color: #DDDDDD;
+  font-size: 22px;
+  font-family: "Comfortaa"; }
+
+div.menu-bar div.menu {
+  display: flex;
+  height: 100%;
+  font-size: 20px;
+  /* line-height: 80px; */ }
+
+div.menu .menu-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #DDDDDD;
+  /* margin-left: 20px;
+  margin-right: 20px;  */
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px; }
+
+div.menu .menu-item:hover {
+  background-color: #1dacd8; }
+
+div.content {
+  margin: 90px auto 0 auto;
+  padding: 20px;
+  background-color: white;
+  width: 90vw;
+  max-width: 1200px; }
+
+h1 {
+  padding-bottom: 10px;
+  border-bottom: 5px #7278c7 solid;
+  font-size: 32px;
+  line-height: 1; }
+
+h3 {
+  padding: 0;
+  margin: 0; }
+
+a.button {
+  display: inline-block;
+  background-color: chartreuse;
+  color: black;
+  text-decoration: none;
+  padding: 5px 15px;
+  /* font-family: "Lato"; */
+  font-size: 150%;
+  /* font-weight: bold; */ }
+
+li.problem {
+  padding-bottom: 10px; }
+
+table.difficulty {
+  border-collapse: collapse;
+  border: 2px solid; }
+
+td.difficulty-data {
+  padding: 8px 0 8px 8px;
+  border: 1px solid; }
+
+div.access-counter-base {
+  padding: 10px;
+  text-align: center; }
+
+div.access-counter-hidden {
+  display: none; }
+
+table.tour-match {
+  border-collapse: collapse;
+  border: 2px solid;
+  table-layout: fixed; }
+  table.tour-match td {
+    font-size: 18px;
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid; }
+    table.tour-match td.tour-name {
+      padding: 0px 8px 0px 8px;
+      width: 120px;
+      max-width: 120px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+    table.tour-match td.tour-point, table.tour-match td.tour-rank {
+      padding: 0;
+      text-align: center; }
+    table.tour-match td.tour-point {
+      background-color: #f5a3cc;
+      width: 36px; }
+    table.tour-match td.tour-rank {
+      background-color: #a3f5a3;
+      width: 16px; }
