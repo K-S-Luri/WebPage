@@ -1,39 +1,21 @@
 import {Place} from "./Place";
+import { Tournament } from "./Tournament";
 
-type Side = "W" | "L";
+export type Side = "W" | "L";
 
 export class Match {
-    static width: number;
-    static height: number;
-    static horiInterval: number = 50;
-    static vertInterval: number = 10;
-    places: Array<Place | null>;
+    places: Array<Place | null> = [null, null, null, null];
     side: Side;
     round: number;
     id: number;
     isDummy: boolean = false;
+    tournament: Tournament;
 
-    constructor(places: Array<Place | null>, side: Side, round: number, id: number) {
-        this.places = places;
+    constructor(side: Side, round: number, id: number, tournament: Tournament) {
         this.side = side;
         this.round = round;
         this.id = id;
-    }
-
-    static calcSize(): void {
-        let dummy = new Match([null, null, null, null], "W", 0, 0);
-        dummy.isDummy = true;
-        dummy.draw();
-        let matches = document.getElementsByClassName("tour-match");
-        if (matches.length === 0) {
-            console.log("試合がないよ");
-            return;
-        }
-        let basematch = matches[0] as HTMLElement;
-        this.width = basematch.getBoundingClientRect().width;
-        this.height = basematch.getBoundingClientRect().height;
-        // dummyを作っているのがtournamentなのでparentは絶対あります
-        basematch.parentNode!.removeChild(basematch);
+        this.tournament = tournament;
     }
 
     get top(): number {
@@ -46,27 +28,30 @@ export class Match {
             }
             return 0;
         }
-        return (Match.height + Match.vertInterval) * this.id;
+        return (this.tournament.matchHeight + this.tournament.vertiInterval) * this.id;
     }
 
     get left(): number {
         if (this.isDummy) {
             return 0;
         }
-        return (Match.width + Match.horiInterval) * this.round;
+        return (this.tournament.matchWidth + this.tournament.horiInterval) * this.round;
     }
 
-    draw() {
+    draw(): void {
         let base = document.getElementById("tournament");
-        let tableHTML = "<table class='tour-match' style='position: absolute;";
-        tableHTML += "left:" + this.left.toString() + "px;";
+        let idString = "match-" + this.side + "-" + this.round + "-" + this.id;
+        let tableHTML = "<table class='tour-match' ";
+        tableHTML += "id='" + idString + "' ";
+        tableHTML += "style='position: absolute; ";
+        tableHTML += "left:" + this.left.toString() + "px; ";
         tableHTML += "top:" + this.top + "px;";
         tableHTML += "'>";
         for (let place of this.places) {
             tableHTML += this.makeOneTr(place);
         }
         tableHTML += "</table>";
-        if (base != null) {
+        if (base !== null) {
             base.insertAdjacentHTML("beforeend", tableHTML);
         }
     }
@@ -76,9 +61,9 @@ export class Match {
         let pointString = "";
         let missString = "";
         let rankString = "";
-        if (place != null) {
+        if (place !== null) {
             nameString = place.name;
-            if (place.result != null) {
+            if (place.result !== null) {
                 pointString = place.result.point.toString();
                 missString = place.result.miss.toString();
                 rankString = place.result.rank.toString();
