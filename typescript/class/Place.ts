@@ -1,6 +1,7 @@
-interface PlaceResult {
+export interface PlaceResult {
     point: number;
     miss: number;
+    // 0位から
     rank: number;
 }
 

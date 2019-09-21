@@ -1,17 +1,22 @@
-import {Place} from "./Place";
+import { PlaceResult, Place} from "./Place";
 import { Tournament } from "./Tournament";
 
 export type Side = "W" | "L";
 
-interface MatchPos {
+export interface MatchPos {
     round: number;
     id: number;
+}
+
+export interface PlacePos extends MatchPos {
+    placeNum: number;
 }
 
 export class Match {
     places: Array<Place | null> = [null, null, null, null];
     side: Side;
     pos: MatchPos;
+    nextPos: Array<PlacePos | null> = [null, null, null, null];
     isDummy: boolean = false;
     tournament: Tournament;
 
@@ -57,6 +62,17 @@ export class Match {
         if (base !== null) {
             base.insertAdjacentHTML("beforeend", tableHTML);
         }
+    }
+
+    setResult(results: PlaceResult[]): void {
+        for (let i = 0; i < results.length; i++) {
+            if (this.places[i] === null) {
+                continue;
+            }
+            // nullチェックをしたので絶対あります
+            this.places[i]!.result = results[i];
+        }
+        this.tournament.bringNamesToNextMatch(this.pos);
     }
 
     private makeOneTr(place: Place |  null): string {

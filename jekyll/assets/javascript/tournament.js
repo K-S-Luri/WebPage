@@ -14,6 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Match = /** @class */ (function () {
     function Match(side, pos, tournament) {
         this.places = [null, null, null, null];
+        this.nextPos = [null, null, null, null];
         this.isDummy = false;
         this.side = side;
         this.pos = pos;
@@ -63,6 +64,16 @@ var Match = /** @class */ (function () {
             base.insertAdjacentHTML("beforeend", tableHTML);
         }
     };
+    Match.prototype.setResult = function (results) {
+        for (var i = 0; i < results.length; i++) {
+            if (this.places[i] === null) {
+                continue;
+            }
+            // nullチェックをしたので絶対あります
+            this.places[i].result = results[i];
+        }
+        this.tournament.bringNamesToNextMatch(this.pos);
+    };
     Match.prototype.makeOneTr = function (place) {
         var nameString = "";
         var pointString = "";
@@ -99,6 +110,17 @@ exports.Place = Place;
 
 },{}],4:[function(require,module,exports){
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var class_1 = require("../class");
 var Tournament = /** @class */ (function () {
@@ -107,11 +129,14 @@ var Tournament = /** @class */ (function () {
         this.matchHeight = 0;
         this.horiInterval = 50;
         this.vertiInterval = 10;
+        this.priorityToRound1Place = [];
         this.calcMatchSize();
         this.playerSize = playerSize;
         this.calcRounds();
         this.calcSize();
         this.makeMatches();
+        this.setNextPoses(0);
+        this.calcPriorityToPlace();
     }
     Tournament.prototype.draw = function () {
         for (var i = 0; i < this.rounds; i++) {
@@ -120,28 +145,86 @@ var Tournament = /** @class */ (function () {
             }
         }
     };
-    Tournament.prototype.setName = function (side, round, id, placeNumber, name) {
-        if (this.matches[round] === undefined || this.matches[round][id] === undefined) {
+    Tournament.prototype.setName = function (side, pos, name) {
+        if (this.matches[pos.round] === undefined || this.matches[pos.round][pos.id] === undefined) {
             console.log("存在しない場所に名前を入力しようとしています");
             return;
         }
-        var matchName = "match-" + side + "-" + round + "-" + id;
+        var matchName = "match-" + side + "-" + pos.round + "-" + pos.id;
         var matchElement = document.getElementById(matchName);
         if (matchElement !== null) {
             // matchの親はtournamentなのでparentは絶対あります
             matchElement.parentNode.removeChild(matchElement);
         }
-        var match = this.matches[round][id];
-        var place = match.places[placeNumber];
+        var match = this.matches[pos.round][pos.id];
+        var place = match.places[pos.placeNum];
         if (place === undefined) {
             console.log("1試合の人数を外れた部分に名前を入力しようとしています");
             return;
         }
         if (place === null) {
-            match.places[placeNumber] = new class_1.Place(name);
+            match.places[pos.placeNum] = new class_1.Place(name);
         }
-        match.places[placeNumber].name = name;
+        match.places[pos.placeNum].name = name;
         match.draw();
+    };
+    Tournament.prototype.bringNamesToNextMatch = function (pos) {
+        var match = this.matches[pos.round][pos.id];
+        for (var _i = 0, _a = match.places; _i < _a.length; _i++) {
+            var place = _a[_i];
+            if (place === null || place.result === null) {
+                continue;
+            }
+            var rank = place.result.rank;
+            if (match.nextPos[rank] === undefined || match.nextPos[rank] === null) {
+                continue;
+            }
+            // nullチェックをしているので絶対あります
+            this.setName("W", match.nextPos[rank], place.name);
+        }
+    };
+    Tournament.prototype.setPlayerNameToRound1 = function (names) {
+        for (var i = 0; i < names.length; i++) {
+            if (i >= this.priorityToRound1Place.length) {
+                continue;
+            }
+            this.setName("W", this.priorityToRound1Place[i], names[i]);
+        }
+    };
+    Tournament.prototype.calcPriorityToPlace = function () {
+        var gradedPoses = [[0], [0, 1]];
+        var _loop_1 = function (i) {
+            var basePoses = gradedPoses[gradedPoses.length - 1];
+            var workingPoses = [];
+            var _loop_2 = function (j) {
+                workingPoses.push(basePoses.map(function (x) { return (x + basePoses.length * j); }));
+            };
+            for (var j = 0; j < 2; j++) {
+                _loop_2(j);
+            }
+            var newGradePoses = [];
+            for (var j = 0; j < basePoses.length / 2; j++) {
+                newGradePoses.push(workingPoses[0][j * 2]);
+                newGradePoses.push(workingPoses[1][j * 2 + 1]);
+                newGradePoses.push(workingPoses[1][j * 2]);
+                newGradePoses.push(workingPoses[0][j * 2 + 1]);
+            }
+            gradedPoses.push(newGradePoses);
+        };
+        for (var i = 0; i < this.rounds; i++) {
+            _loop_1(i);
+        }
+        var resultPoses = gradedPoses[gradedPoses.length - 1];
+        for (var i = 0; i < resultPoses.length / 4; i++) {
+            var matchNums = [];
+            for (var j = 0; j < 4; j++) {
+                matchNums.push(resultPoses[i * 4 + j]);
+            }
+            matchNums = matchNums.sort(function (a, b) { return a - b; });
+            for (var j = 0; j < 4; j++) {
+                this.priorityToRound1Place[matchNums[j]] = { round: 0, id: i, placeNum: j };
+            }
+        }
     };
     Tournament.prototype.calcMatchSize = function () {
         var dummy = new class_1.Match("W", { round: 0, id: 0 }, this);
@@ -185,6 +268,24 @@ var Tournament = /** @class */ (function () {
             this.matches[i] = oneRoundMatches;
         }
     };
+    // currentRankは0位から
+    Tournament.prototype.setNextPos = function (currentPos, currentRank, next) {
+        this.matches[currentPos.round][currentPos.id].nextPos[currentRank] = __assign({ round: currentPos.round + 1 }, next);
+    };
+    Tournament.prototype.setNextPoses = function (round) {
+        if (this.rounds - round === 1) {
+            return;
+        }
+        else if (this.rounds - round === 2) {
+            this.setNextPos({ round: round, id: 0 }, 0, { id: 0, placeNum: 0 });
+            this.setNextPos({ round: round, id: 1 }, 0, { id: 0, placeNum: 1 });
+            this.setNextPos({ round: round, id: 0 }, 1, { id: 0, placeNum: 2 });
+            this.setNextPos({ round: round, id: 1 }, 1, { id: 0, placeNum: 3 });
+        }
+        var baseMatchNum = Math.pow(2, (round - 1));
+        var processingRounds = Math.floor((round + 1) / 2);
+        var leapNum = 1;
+    };
     return Tournament;
 }());
 exports.Tournament = Tournament;
@@ -222,10 +323,12 @@ function buildTournament() {
         }
     }
     tournament.draw();
-    tournament.setName("W", 3, 0, 0, "wktk");
-    tournament.setName("W", 0, 0, 1, "ktkr");
-    tournament.setName("W", 0, 0, 2, "kwsk");
-    tournament.setName("W", 0, 0, 3, "佐々木 忠次郎");
+    // tournament.setName("W", {round: 3, id: 0, placeNum: 0}, "wktk");
+    // tournament.setName("W", {round: 0, id: 0, placeNum: 1}, "ktkr");
+    // tournament.setName("W", {round: 0, id: 0, placeNum: 2}, "kwsk");
+    // tournament.setName("W", {round: 0, id: 0, placeNum: 3}, "佐々木 忠次郎");
+    tournament.setPlayerNameToRound1(["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4", "5", "6", "7", "8", "9", "10",
+        "11", "12", "13", "14", "15", "16"]);
 }
 document.addEventListener("DOMContentLoaded", function () {
     buildTournament();
