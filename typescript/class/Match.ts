@@ -11,8 +11,6 @@ interface MatchPos {
 export class Match {
     places: Array<Place | null> = [null, null, null, null];
     side: Side;
-    // round: number;
-    // id: number;
     pos: MatchPos;
     isDummy: boolean = false;
     tournament: Tournament;
