@@ -31,30 +31,6 @@ export class Tournament {
         }
     }
 
-    setName(side: Side, pos: PlacePos, name: string): void {
-        if (this.matches[pos.round] === undefined || this.matches[pos.round][pos.id] === undefined) {
-            console.log("存在しない場所に名前を入力しようとしています");
-            return;
-        }
-        let matchName = "match-" + side + "-" + pos.round + "-" + pos.id;
-        let matchElement = document.getElementById(matchName);
-        if (matchElement !== null) {
-            // matchの親はtournamentなのでparentは絶対あります
-            matchElement.parentNode!.removeChild(matchElement);
-        }
-        let match = this.matches[pos.round][pos.id];
-        let place = match.places[pos.placeNum];
-        if (place === undefined) {
-            console.log("1試合の人数を外れた部分に名前を入力しようとしています");
-            return;
-        }
-        if (place === null) {
-            match.places[pos.placeNum] = new Place(name);
-        }
-        match.places[pos.placeNum]!.name = name;
-        match.draw();
-    }
-
     bringNamesToNextMatch(pos: MatchPos) {
         let match = this.matches[pos.round][pos.id];
         for (let place of match.places) {
@@ -77,6 +53,30 @@ export class Tournament {
             }
             this.setName("W", this.priorityToRound1Place[i], names[i]);
         }
+    }
+
+    private setName(side: Side, pos: PlacePos, name: string): void {
+        if (this.matches[pos.round] === undefined || this.matches[pos.round][pos.id] === undefined) {
+            console.log("存在しない場所に名前を入力しようとしています");
+            return;
+        }
+        let matchName = "match-" + side + "-" + pos.round + "-" + pos.id;
+        let matchElement = document.getElementById(matchName);
+        if (matchElement !== null) {
+            // matchの親はtournamentなのでparentは絶対あります
+            matchElement.parentNode!.removeChild(matchElement);
+        }
+        let match = this.matches[pos.round][pos.id];
+        let place = match.places[pos.placeNum];
+        if (place === undefined) {
+            console.log("1試合の人数を外れた部分に名前を入力しようとしています");
+            return;
+        }
+        if (place === null) {
+            match.places[pos.placeNum] = new Place(name);
+        }
+        match.places[pos.placeNum]!.name = name;
+        match.draw();
     }
 
     private calcPriorityToPlace(): void {

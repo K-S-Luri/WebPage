@@ -145,29 +145,6 @@ var Tournament = /** @class */ (function () {
             }
         }
     };
-    Tournament.prototype.setName = function (side, pos, name) {
-        if (this.matches[pos.round] === undefined || this.matches[pos.round][pos.id] === undefined) {
-            console.log("存在しない場所に名前を入力しようとしています");
-            return;
-        }
-        var matchName = "match-" + side + "-" + pos.round + "-" + pos.id;
-        var matchElement = document.getElementById(matchName);
-        if (matchElement !== null) {
-            // matchの親はtournamentなのでparentは絶対あります
-            matchElement.parentNode.removeChild(matchElement);
-        }
-        var match = this.matches[pos.round][pos.id];
-        var place = match.places[pos.placeNum];
-        if (place === undefined) {
-            console.log("1試合の人数を外れた部分に名前を入力しようとしています");
-            return;
-        }
-        if (place === null) {
-            match.places[pos.placeNum] = new class_1.Place(name);
-        }
-        match.places[pos.placeNum].name = name;
-        match.draw();
-    };
     Tournament.prototype.bringNamesToNextMatch = function (pos) {
         var match = this.matches[pos.round][pos.id];
         for (var _i = 0, _a = match.places; _i < _a.length; _i++) {
@@ -190,6 +167,29 @@ var Tournament = /** @class */ (function () {
             }
             this.setName("W", this.priorityToRound1Place[i], names[i]);
         }
+    };
+    Tournament.prototype.setName = function (side, pos, name) {
+        if (this.matches[pos.round] === undefined || this.matches[pos.round][pos.id] === undefined) {
+            console.log("存在しない場所に名前を入力しようとしています");
+            return;
+        }
+        var matchName = "match-" + side + "-" + pos.round + "-" + pos.id;
+        var matchElement = document.getElementById(matchName);
+        if (matchElement !== null) {
+            // matchの親はtournamentなのでparentは絶対あります
+            matchElement.parentNode.removeChild(matchElement);
+        }
+        var match = this.matches[pos.round][pos.id];
+        var place = match.places[pos.placeNum];
+        if (place === undefined) {
+            console.log("1試合の人数を外れた部分に名前を入力しようとしています");
+            return;
+        }
+        if (place === null) {
+            match.places[pos.placeNum] = new class_1.Place(name);
+        }
+        match.places[pos.placeNum].name = name;
+        match.draw();
     };
     Tournament.prototype.calcPriorityToPlace = function () {
         var gradedPoses = [[0], [0, 1]];
@@ -309,7 +309,7 @@ function buildTournament() {
     //     let match = new Match([place1, place2, place3, place4], "W", i, i + 2);
     //     match.draw();
     // }
-    var tournament = new class_1.Tournament(256);
+    var tournament = new class_1.Tournament(64);
     var base = document.getElementById("tournament");
     if (base !== null) {
         var width = tournament.width;
@@ -323,10 +323,6 @@ function buildTournament() {
         }
     }
     tournament.draw();
-    // tournament.setName("W", {round: 3, id: 0, placeNum: 0}, "wktk");
-    // tournament.setName("W", {round: 0, id: 0, placeNum: 1}, "ktkr");
-    // tournament.setName("W", {round: 0, id: 0, placeNum: 2}, "kwsk");
-    // tournament.setName("W", {round: 0, id: 0, placeNum: 3}, "佐々木 忠次郎");
     tournament.setPlayerNameToRound1(["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4", "5", "6", "7", "8", "9", "10",
         "11", "12", "13", "14", "15", "16"]);
 }

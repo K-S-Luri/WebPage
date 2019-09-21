@@ -16,7 +16,7 @@ function buildTournament(): void {
     //     match.draw();
     // }
 
-    let tournament = new Tournament(256);
+    let tournament = new Tournament(64);
 
     let base = document.getElementById("tournament");
     if (base !== null) {
@@ -32,10 +32,6 @@ function buildTournament(): void {
     }
 
     tournament.draw();
-    // tournament.setName("W", {round: 3, id: 0, placeNum: 0}, "wktk");
-    // tournament.setName("W", {round: 0, id: 0, placeNum: 1}, "ktkr");
-    // tournament.setName("W", {round: 0, id: 0, placeNum: 2}, "kwsk");
-    // tournament.setName("W", {round: 0, id: 0, placeNum: 3}, "佐々木 忠次郎");
     tournament.setPlayerNameToRound1(["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4", "5", "6", "7", "8", "9", "10",
     "11", "12", "13", "14", "15", "16"]);
 }
