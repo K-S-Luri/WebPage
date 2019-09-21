@@ -16,7 +16,8 @@ function buildTournament(): void {
     //     match.draw();
     // }
 
-    let tournament = new Tournament(64);
+    let playerNum = 8;
+    let tournament = new Tournament(playerNum);
 
     let base = document.getElementById("tournament");
     if (base !== null) {
@@ -32,8 +33,16 @@ function buildTournament(): void {
     }
 
     tournament.draw();
-    tournament.setPlayerNameToRound1(["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4", "5", "6", "7", "8", "9", "10",
-    "11", "12", "13", "14", "15", "16"]);
+    let names = ["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4"];
+    for (let i = 0; i < playerNum - 4; i++) {
+        names.push((i + 5).toString());
+    }
+    tournament.setPlayerNameToRound1(names);
+    for (let i = 0; i < playerNum / 4; i++) {
+        let match = tournament.matches[0][i];
+        match.setResult([{point: 7, miss: 0, rank: 0}, {point: 7, miss: 1, rank: 1},
+            {point: 4, miss: 1, rank: 2}, {point: 2, miss: 3, rank: 3}]);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

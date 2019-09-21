@@ -55,8 +55,8 @@ export class Match {
         tableHTML += "left:" + this.left.toString() + "px; ";
         tableHTML += "top:" + this.top + "px;";
         tableHTML += "'>";
-        for (let place of this.places) {
-            tableHTML += this.makeOneTr(place);
+        for (let i = 0; i < this.places.length; i++) {
+            tableHTML += this.makeOneTr(this.places[i], i);
         }
         tableHTML += "</table>";
         if (base !== null) {
@@ -71,11 +71,24 @@ export class Match {
             }
             // nullチェックをしたので絶対あります
             this.places[i]!.result = results[i];
+            let placeName = "place-" + this.side + "-" + this.pos.round + "-" + this.pos.id + "-" + i;
+            let placeElement = document.getElementById(placeName);
+            if (placeElement === null) {
+                console.log("結果を設定しようとした位置が不正です");
+            }
+            // nullチェックをしたので絶対あります
+            placeElement!.innerHTML = this.makePlaceHTML(this.places[i]);
         }
         this.tournament.bringNamesToNextMatch(this.pos);
     }
 
-    private makeOneTr(place: Place |  null): string {
+    private makeOneTr(place: Place |  null, placeNum: number): string {
+        return `<tr id='place-${this.side}-${this.pos.round}-${this.pos.id}-${placeNum}'>
+        ${this.makePlaceHTML(place)}
+        </tr>`;
+    }
+
+    private makePlaceHTML(place: Place | null) {
         let nameString = "";
         let pointString = "";
         let missString = "";
@@ -85,13 +98,11 @@ export class Match {
             if (place.result !== null) {
                 pointString = place.result.point.toString();
                 missString = place.result.miss.toString();
-                rankString = place.result.rank.toString();
+                rankString = (place.result.rank + 1).toString();
             }
         }
-        return `<tr>
-        <td class="tour-name">${nameString}</td>
-        <td class="tour-point">${pointString}-${missString}</td>
-        <td class="tour-rank">${rankString}</td>
-        </tr>`;
+        return `<td class='tour-name'>${nameString}</td>
+        <td class='tour-point'>${pointString}-${missString}</td>
+        <td class='tour-rank'>${rankString}</td>`;
     }
 }

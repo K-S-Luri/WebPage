@@ -55,9 +55,8 @@ var Match = /** @class */ (function () {
         tableHTML += "left:" + this.left.toString() + "px; ";
         tableHTML += "top:" + this.top + "px;";
         tableHTML += "'>";
-        for (var _i = 0, _a = this.places; _i < _a.length; _i++) {
-            var place = _a[_i];
-            tableHTML += this.makeOneTr(place);
+        for (var i = 0; i < this.places.length; i++) {
+            tableHTML += this.makeOneTr(this.places[i], i);
         }
         tableHTML += "</table>";
         if (base !== null) {
@@ -71,10 +70,20 @@ var Match = /** @class */ (function () {
             }
             // nullチェックをしたので絶対あります
             this.places[i].result = results[i];
+            var placeName = "place-" + this.side + "-" + this.pos.round + "-" + this.pos.id + "-" + i;
+            var placeElement = document.getElementById(placeName);
+            if (placeElement === null) {
+                console.log("結果を設定しようとした位置が不正です");
+            }
+            // nullチェックをしたので絶対あります
+            placeElement.innerHTML = this.makePlaceHTML(this.places[i]);
         }
         this.tournament.bringNamesToNextMatch(this.pos);
     };
-    Match.prototype.makeOneTr = function (place) {
+    Match.prototype.makeOneTr = function (place, placeNum) {
+        return "<tr id='place-" + this.side + "-" + this.pos.round + "-" + this.pos.id + "-" + placeNum + "'>\n        " + this.makePlaceHTML(place) + "\n        </tr>";
+    };
+    Match.prototype.makePlaceHTML = function (place) {
         var nameString = "";
         var pointString = "";
         var missString = "";
@@ -84,10 +93,10 @@ var Match = /** @class */ (function () {
             if (place.result !== null) {
                 pointString = place.result.point.toString();
                 missString = place.result.miss.toString();
-                rankString = place.result.rank.toString();
+                rankString = (place.result.rank + 1).toString();
             }
         }
-        return "<tr>\n        <td class=\"tour-name\">" + nameString + "</td>\n        <td class=\"tour-point\">" + pointString + "-" + missString + "</td>\n        <td class=\"tour-rank\">" + rankString + "</td>\n        </tr>";
+        return "<td class='tour-name'>" + nameString + "</td>\n        <td class='tour-point'>" + pointString + "-" + missString + "</td>\n        <td class='tour-rank'>" + rankString + "</td>";
     };
     return Match;
 }());
@@ -309,7 +318,8 @@ function buildTournament() {
     //     let match = new Match([place1, place2, place3, place4], "W", i, i + 2);
     //     match.draw();
     // }
-    var tournament = new class_1.Tournament(64);
+    var playerNum = 8;
+    var tournament = new class_1.Tournament(playerNum);
     var base = document.getElementById("tournament");
     if (base !== null) {
         var width = tournament.width;
@@ -323,8 +333,16 @@ function buildTournament() {
         }
     }
     tournament.draw();
-    tournament.setPlayerNameToRound1(["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4", "5", "6", "7", "8", "9", "10",
-        "11", "12", "13", "14", "15", "16"]);
+    var names = ["wktk1", "ktkr2", "kwsk3", "佐々木 忠次郎4"];
+    for (var i = 0; i < playerNum - 4; i++) {
+        names.push((i + 5).toString());
+    }
+    tournament.setPlayerNameToRound1(names);
+    for (var i = 0; i < playerNum / 4; i++) {
+        var match = tournament.matches[0][i];
+        match.setResult([{ point: 7, miss: 0, rank: 0 }, { point: 7, miss: 1, rank: 1 },
+            { point: 4, miss: 1, rank: 2 }, { point: 2, miss: 3, rank: 3 }]);
+    }
 }
 document.addEventListener("DOMContentLoaded", function () {
     buildTournament();
