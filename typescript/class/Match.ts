@@ -3,6 +3,11 @@ import { Tournament } from "./Tournament";
 
 export type Side = "W" | "L";
 
+interface MatchPos {
+    round: number;
+    id: number;
+}
+
 export class Match {
     places: Array<Place | null> = [null, null, null, null];
     side: Side;

@@ -16,7 +16,7 @@ function buildTournament(): void {
     //     match.draw();
     // }
 
-    let tournament = new Tournament(64);
+    let tournament = new Tournament(256);
 
     let base = document.getElementById("tournament");
     if (base !== null) {

@@ -209,7 +209,7 @@ function buildTournament() {
     //     let match = new Match([place1, place2, place3, place4], "W", i, i + 2);
     //     match.draw();
     // }
-    var tournament = new class_1.Tournament(64);
+    var tournament = new class_1.Tournament(256);
     var base = document.getElementById("tournament");
     if (base !== null) {
         var width = tournament.width;
