@@ -12,12 +12,11 @@ __export(require("./class/Tournament"));
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Match = /** @class */ (function () {
-    function Match(side, round, id, tournament) {
+    function Match(side, pos, tournament) {
         this.places = [null, null, null, null];
         this.isDummy = false;
         this.side = side;
-        this.round = round;
-        this.id = id;
+        this.pos = pos;
         this.tournament = tournament;
     }
     Object.defineProperty(Match.prototype, "top", {
@@ -31,7 +30,7 @@ var Match = /** @class */ (function () {
                 }
                 return 0;
             }
-            return (this.tournament.matchHeight + this.tournament.vertiInterval) * this.id;
+            return (this.tournament.matchHeight + this.tournament.vertiInterval) * this.pos.id;
         },
         enumerable: true,
         configurable: true
@@ -41,14 +40,14 @@ var Match = /** @class */ (function () {
             if (this.isDummy) {
                 return 0;
             }
-            return (this.tournament.matchWidth + this.tournament.horiInterval) * this.round;
+            return (this.tournament.matchWidth + this.tournament.horiInterval) * this.pos.round;
         },
         enumerable: true,
         configurable: true
     });
     Match.prototype.draw = function () {
         var base = document.getElementById("tournament");
-        var idString = "match-" + this.side + "-" + this.round + "-" + this.id;
+        var idString = "match-" + this.side + "-" + this.pos.round + "-" + this.pos.id;
         var tableHTML = "<table class='tour-match' ";
         tableHTML += "id='" + idString + "' ";
         tableHTML += "style='position: absolute; ";
@@ -145,7 +144,7 @@ var Tournament = /** @class */ (function () {
         match.draw();
     };
     Tournament.prototype.calcMatchSize = function () {
-        var dummy = new class_1.Match("W", 0, 0, this);
+        var dummy = new class_1.Match("W", { round: 0, id: 0 }, this);
         dummy.isDummy = true;
         dummy.draw();
         var matches = document.getElementsByClassName("tour-match");
@@ -181,7 +180,7 @@ var Tournament = /** @class */ (function () {
         for (var i = 0; i < this.rounds; i++) {
             var oneRoundMatches = [];
             for (var j = 0; j < Math.pow(2, (this.rounds - i - 1)); j++) {
-                oneRoundMatches[j] = new class_1.Match("W", i, j, this);
+                oneRoundMatches[j] = new class_1.Match("W", { round: i, id: j }, this);
             }
             this.matches[i] = oneRoundMatches;
         }

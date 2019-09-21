@@ -52,7 +52,7 @@ export class Tournament {
     }
 
     private calcMatchSize(): void {
-        let dummy = new Match("W", 0, 0, this);
+        let dummy = new Match("W", {round: 0, id: 0}, this);
         dummy.isDummy = true;
         dummy.draw();
         let matches = document.getElementsByClassName("tour-match");
@@ -91,7 +91,7 @@ export class Tournament {
         for (let i = 0; i < this.rounds; i++) {
             let oneRoundMatches = [];
             for (let j = 0; j < 2 ** (this.rounds - i - 1); j++) {
-                oneRoundMatches[j] = new Match("W", i, j, this);
+                oneRoundMatches[j] = new Match("W", {round: i, id: j}, this);
             }
             this.matches[i] = oneRoundMatches;
         }

@@ -11,15 +11,15 @@ interface MatchPos {
 export class Match {
     places: Array<Place | null> = [null, null, null, null];
     side: Side;
-    round: number;
-    id: number;
+    // round: number;
+    // id: number;
+    pos: MatchPos;
     isDummy: boolean = false;
     tournament: Tournament;
 
-    constructor(side: Side, round: number, id: number, tournament: Tournament) {
+    constructor(side: Side, pos: MatchPos, tournament: Tournament) {
         this.side = side;
-        this.round = round;
-        this.id = id;
+        this.pos = pos;
         this.tournament = tournament;
     }
 
@@ -33,19 +33,19 @@ export class Match {
             }
             return 0;
         }
-        return (this.tournament.matchHeight + this.tournament.vertiInterval) * this.id;
+        return (this.tournament.matchHeight + this.tournament.vertiInterval) * this.pos.id;
     }
 
     get left(): number {
         if (this.isDummy) {
             return 0;
         }
-        return (this.tournament.matchWidth + this.tournament.horiInterval) * this.round;
+        return (this.tournament.matchWidth + this.tournament.horiInterval) * this.pos.round;
     }
 
     draw(): void {
         let base = document.getElementById("tournament");
-        let idString = "match-" + this.side + "-" + this.round + "-" + this.id;
+        let idString = "match-" + this.side + "-" + this.pos.round + "-" + this.pos.id;
         let tableHTML = "<table class='tour-match' ";
         tableHTML += "id='" + idString + "' ";
         tableHTML += "style='position: absolute; ";
