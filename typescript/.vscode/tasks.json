@@ -6,7 +6,7 @@
         {
             "label": "tsify",
             "type": "shell",
-            "command": "browserify tournament-main.ts -p [tsify] > ../jekyll/assets/javascript/tournament.js",
+            "command": "browserify tournament-main.ts -p [tsify] --outfile ../jekyll/assets/javascript/tournament.js",
             "group": {
                 "kind": "build",
                 "isDefault": true
