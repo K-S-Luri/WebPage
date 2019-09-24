@@ -162,16 +162,17 @@ export class Tournament {
     }
 
     private setNextPoses(round: number): void {
-        if (this.rounds - round === 1) {
+        let remainRounds = this.rounds - round;
+        if (remainRounds === 1) {
             return;
-        } else if (this.rounds - round === 2) {
+        } else if (remainRounds === 2) {
             this.setNextPos({round, id: 0}, 0, {id: 0, placeNum: 0});
             this.setNextPos({round, id: 1}, 0, {id: 0, placeNum: 1});
             this.setNextPos({round, id: 0}, 1, {id: 0, placeNum: 2});
             this.setNextPos({round, id: 1}, 1, {id: 0, placeNum: 3});
         }
-        let baseMatchNum = 2 ** (round - 1);
-        let processingRounds = Math.floor((round + 1) / 2);
+        let baseMatchNum = 2 ** (remainRounds - 1);
+        let processingRounds = Math.floor((remainRounds + 1) / 2);
         let leapNum = 1;
     }
 }
