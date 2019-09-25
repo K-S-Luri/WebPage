@@ -282,17 +282,18 @@ var Tournament = /** @class */ (function () {
         this.matches[currentPos.round][currentPos.id].nextPos[currentRank] = __assign({ round: currentPos.round + 1 }, next);
     };
     Tournament.prototype.setNextPoses = function (round) {
-        if (this.rounds - round === 1) {
+        var remainRounds = this.rounds - round;
+        if (remainRounds === 1) {
             return;
         }
-        else if (this.rounds - round === 2) {
+        else if (remainRounds === 2) {
             this.setNextPos({ round: round, id: 0 }, 0, { id: 0, placeNum: 0 });
             this.setNextPos({ round: round, id: 1 }, 0, { id: 0, placeNum: 1 });
             this.setNextPos({ round: round, id: 0 }, 1, { id: 0, placeNum: 2 });
             this.setNextPos({ round: round, id: 1 }, 1, { id: 0, placeNum: 3 });
         }
-        var baseMatchNum = Math.pow(2, (round - 1));
-        var processingRounds = Math.floor((round + 1) / 2);
+        var baseMatchNum = Math.pow(2, (remainRounds - 1));
+        var processingRounds = Math.floor((remainRounds + 1) / 2);
         var leapNum = 1;
     };
     return Tournament;

@@ -11,6 +11,12 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "jekyll",
+            "type": "shell",
+            "command": "cd ../jekyll/; jekyll serve",
+            "group": "build"
         }
     ]
 }
