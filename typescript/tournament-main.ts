@@ -16,7 +16,7 @@ function buildTournament(): void {
     //     match.draw();
     // }
 
-    let playerNum = 8;
+    let playerNum = 1024;
     let tournament = new Tournament(playerNum);
 
     let base = document.getElementById("tournament");
@@ -38,10 +38,14 @@ function buildTournament(): void {
         names.push((i + 5).toString());
     }
     tournament.setPlayerNameToRound1(names);
-    for (let i = 0; i < playerNum / 4; i++) {
-        let match = tournament.matches[0][i];
-        match.setResult([{point: 7, miss: 0, rank: 0}, {point: 7, miss: 1, rank: 1},
-            {point: 4, miss: 1, rank: 2}, {point: 2, miss: 3, rank: 3}]);
+    let playerNumCopy = playerNum;
+    for (let i = 0; playerNumCopy >= 4; i++) {
+        for (let j = 0; j < playerNumCopy / 4; j++) {
+            let match = tournament.matches[i][j];
+            match.setResult([{point: 7, miss: 0, rank: 0}, {point: 7, miss: 1, rank: 1},
+                {point: 4, miss: 1, rank: 2}, {point: 2, miss: 3, rank: 3}]);
+        }
+        playerNumCopy /= 2;
     }
 }
 

@@ -158,6 +158,7 @@ export class Tournament {
 
     // currentRankは0位から
     private setNextPos(currentPos: MatchPos, currentRank: number, next: {id: number, placeNum: number}): void {
+        console.log(currentPos.round + " " + currentPos.id);
         this.matches[currentPos.round][currentPos.id].nextPos[currentRank] = {round: currentPos.round + 1, ...next};
     }
 
@@ -170,9 +171,65 @@ export class Tournament {
             this.setNextPos({round, id: 1}, 0, {id: 0, placeNum: 1});
             this.setNextPos({round, id: 0}, 1, {id: 0, placeNum: 2});
             this.setNextPos({round, id: 1}, 1, {id: 0, placeNum: 3});
+            return;
         }
         let baseMatchNum = 2 ** (remainRounds - 1);
         let processingRounds = Math.floor((remainRounds + 1) / 2);
         let leapNum = 1;
+        for (let i = 0; i < processingRounds - 1; i++) {
+            let currentMatchNum = baseMatchNum / (2 ** i);
+            if (currentMatchNum % (leapNum * 4) !== 0) {
+                throw new Error("currentMatchnumがleapnum * 4の倍数になっていません");
+            }
+            for (let j = 0; j < currentMatchNum / (leapNum * 4); j++) {
+                for (let k = 0; k < leapNum; k++) {
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 0 * leapNum + k},
+                        0, {id: j * leapNum * 2 + k * 2, placeNum: 0});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 1 * leapNum + k},
+                        0, {id: j * leapNum * 2 + k * 2, placeNum: 1});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 2 * leapNum + k},
+                        0, {id: j * leapNum * 2 + k * 2 + 1, placeNum: 0});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 3 * leapNum + k},
+                        0, {id: j * leapNum * 2 + k * 2 + 1, placeNum: 1});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 0 * leapNum + k},
+                        1, {id: j * leapNum * 2 + k * 2 + 1, placeNum: 2});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 1 * leapNum + k},
+                        1, {id: j * leapNum * 2 + k * 2 + 1, placeNum: 3});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 2 * leapNum + k},
+                        1, {id: j * leapNum * 2 + k * 2, placeNum: 2});
+                    this.setNextPos({round: round + i, id: j * leapNum * 4 + 3 * leapNum + k},
+                        1, {id: j * leapNum * 2 + k * 2, placeNum: 3});
+                }
+            }
+            leapNum *= 2;
+        }
+        if (remainRounds === 3) {
+            this.setNextPos({round: round + 1, id: 0}, 0, {id: 0, placeNum: 0});
+            this.setNextPos({round: round + 1, id: 1}, 0, {id: 0, placeNum: 1});
+            this.setNextPos({round: round + 1, id: 0}, 1, {id: 0, placeNum: 2});
+            this.setNextPos({round: round + 1, id: 1}, 1, {id: 0, placeNum: 3});
+        } else {
+            let currentMatchNum = baseMatchNum / (2 ** (processingRounds - 1));
+            if (currentMatchNum % 4 !== 0) {
+                throw new Error("setNextPoses最終段階での試合数が4の倍数になっていません");
+            }
+            leapNum = currentMatchNum / 4;
+            for (let i = 0; i < leapNum; i++) {
+                this.setNextPos({round: round + processingRounds - 1, id: i}, 0, {id: i * 2, placeNum: 0});
+                this.setNextPos({round: round + processingRounds - 1, id: i + leapNum}, 0, {id: i * 2, placeNum: 1});
+                this.setNextPos({round: round + processingRounds - 1, id: i + 2 * leapNum}, 0,
+                    {id: i * 2 + 1, placeNum: 0});
+                this.setNextPos({round: round + processingRounds - 1, id: i + 3 * leapNum}, 0,
+                    {id: i * 2 + 1, placeNum: 1});
+                this.setNextPos({round: round + processingRounds - 1, id: i}, 1, {id: i * 2 + 1, placeNum: 2});
+                this.setNextPos({round: round + processingRounds - 1, id: i + leapNum}, 1,
+                    {id: i * 2 + 1, placeNum: 3});
+                this.setNextPos({round: round + processingRounds - 1, id: i + 2 * leapNum}, 1,
+                    {id: i * 2, placeNum: 2});
+                this.setNextPos({round: round + processingRounds - 1, id: i + 3 * leapNum}, 1,
+                    {id: i * 2, placeNum: 3});
+            }
+        }
+        this.setNextPoses(round + processingRounds);
     }
 }

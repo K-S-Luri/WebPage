@@ -279,6 +279,7 @@ var Tournament = /** @class */ (function () {
     };
     // currentRankは0位から
     Tournament.prototype.setNextPos = function (currentPos, currentRank, next) {
+        console.log(currentPos.round + " " + currentPos.id);
         this.matches[currentPos.round][currentPos.id].nextPos[currentRank] = __assign({ round: currentPos.round + 1 }, next);
     };
     Tournament.prototype.setNextPoses = function (round) {
@@ -291,10 +292,54 @@ var Tournament = /** @class */ (function () {
             this.setNextPos({ round: round, id: 1 }, 0, { id: 0, placeNum: 1 });
             this.setNextPos({ round: round, id: 0 }, 1, { id: 0, placeNum: 2 });
             this.setNextPos({ round: round, id: 1 }, 1, { id: 0, placeNum: 3 });
+            return;
         }
         var baseMatchNum = Math.pow(2, (remainRounds - 1));
         var processingRounds = Math.floor((remainRounds + 1) / 2);
         var leapNum = 1;
+        for (var i = 0; i < processingRounds - 1; i++) {
+            var currentMatchNum = baseMatchNum / (Math.pow(2, i));
+            if (currentMatchNum % (leapNum * 4) !== 0) {
+                throw new Error("currentMatchnumがleapnum * 4の倍数になっていません");
+            }
+            for (var j = 0; j < currentMatchNum / (leapNum * 4); j++) {
+                for (var k = 0; k < leapNum; k++) {
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 0 * leapNum + k }, 0, { id: j * leapNum * 2 + k * 2, placeNum: 0 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 1 * leapNum + k }, 0, { id: j * leapNum * 2 + k * 2, placeNum: 1 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 2 * leapNum + k }, 0, { id: j * leapNum * 2 + k * 2 + 1, placeNum: 0 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 3 * leapNum + k }, 0, { id: j * leapNum * 2 + k * 2 + 1, placeNum: 1 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 0 * leapNum + k }, 1, { id: j * leapNum * 2 + k * 2 + 1, placeNum: 2 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 1 * leapNum + k }, 1, { id: j * leapNum * 2 + k * 2 + 1, placeNum: 3 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 2 * leapNum + k }, 1, { id: j * leapNum * 2 + k * 2, placeNum: 2 });
+                    this.setNextPos({ round: round + i, id: j * leapNum * 4 + 3 * leapNum + k }, 1, { id: j * leapNum * 2 + k * 2, placeNum: 3 });
+                }
+            }
+            leapNum *= 2;
+        }
+        if (remainRounds === 3) {
+            this.setNextPos({ round: round + 1, id: 0 }, 0, { id: 0, placeNum: 0 });
+            this.setNextPos({ round: round + 1, id: 1 }, 0, { id: 0, placeNum: 1 });
+            this.setNextPos({ round: round + 1, id: 0 }, 1, { id: 0, placeNum: 2 });
+            this.setNextPos({ round: round + 1, id: 1 }, 1, { id: 0, placeNum: 3 });
+        }
+        else {
+            var currentMatchNum = baseMatchNum / (Math.pow(2, (processingRounds - 1)));
+            if (currentMatchNum % 4 !== 0) {
+                throw new Error("setNextPoses最終段階での試合数が4の倍数になっていません");
+            }
+            leapNum = currentMatchNum / 4;
+            for (var i = 0; i < leapNum; i++) {
+                this.setNextPos({ round: round + processingRounds - 1, id: i }, 0, { id: i * 2, placeNum: 0 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i + leapNum }, 0, { id: i * 2, placeNum: 1 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i + 2 * leapNum }, 0, { id: i * 2 + 1, placeNum: 0 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i + 3 * leapNum }, 0, { id: i * 2 + 1, placeNum: 1 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i }, 1, { id: i * 2 + 1, placeNum: 2 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i + leapNum }, 1, { id: i * 2 + 1, placeNum: 3 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i + 2 * leapNum }, 1, { id: i * 2, placeNum: 2 });
+                this.setNextPos({ round: round + processingRounds - 1, id: i + 3 * leapNum }, 1, { id: i * 2, placeNum: 3 });
+            }
+        }
+        this.setNextPoses(round + processingRounds);
     };
     return Tournament;
 }());
@@ -319,7 +364,7 @@ function buildTournament() {
     //     let match = new Match([place1, place2, place3, place4], "W", i, i + 2);
     //     match.draw();
     // }
-    var playerNum = 8;
+    var playerNum = 1024;
     var tournament = new class_1.Tournament(playerNum);
     var base = document.getElementById("tournament");
     if (base !== null) {
@@ -339,10 +384,14 @@ function buildTournament() {
         names.push((i + 5).toString());
     }
     tournament.setPlayerNameToRound1(names);
-    for (var i = 0; i < playerNum / 4; i++) {
-        var match = tournament.matches[0][i];
-        match.setResult([{ point: 7, miss: 0, rank: 0 }, { point: 7, miss: 1, rank: 1 },
-            { point: 4, miss: 1, rank: 2 }, { point: 2, miss: 3, rank: 3 }]);
+    var playerNumCopy = playerNum;
+    for (var i = 0; playerNumCopy >= 4; i++) {
+        for (var j = 0; j < playerNumCopy / 4; j++) {
+            var match = tournament.matches[i][j];
+            match.setResult([{ point: 7, miss: 0, rank: 0 }, { point: 7, miss: 1, rank: 1 },
+                { point: 4, miss: 1, rank: 2 }, { point: 2, miss: 3, rank: 3 }]);
+        }
+        playerNumCopy /= 2;
     }
 }
 document.addEventListener("DOMContentLoaded", function () {
