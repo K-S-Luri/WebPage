@@ -4,5 +4,5 @@
   title: Lotus Leaves
   url: https://atcoder.jp/contests/arc074/tasks/arc074_d
   comment: | 
-    素直に最大流をやろうとすると頂点も辺も多すぎる。
+    素朴に最大流をやろうとすると頂点も辺も多すぎる。
     最大流の発想は変えずに頂点を減らすという発想になれば勝てる。
