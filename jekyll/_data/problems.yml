@@ -157,3 +157,10 @@
   url: https://atcoder.jp/contests/abc070/tasks/abc070_d
   comment: | 
     Kを始点に最短経路を求めればよいだけ。DFSBFSがO(N)だが何も考えずダイクストラでもたぶん間に合う。
+- contest: ABC
+  contest-number: "148"
+  id-in-contest: D
+  title: Brick Break
+  url: https://atcoder.jp/contests/abc148/tasks/abc148_d
+  comment: | 
+    数列に左から1, 2, 3, ……がどれだけあるか調べるだけ。さすがに簡単。
