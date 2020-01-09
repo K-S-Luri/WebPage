@@ -6,3 +6,11 @@
   comment: | 
     素朴に最大流をやろうとすると頂点も辺も多すぎる。
     最大流の発想は変えずに頂点を減らすという発想になれば勝てる。
+- contest: ARC
+  contest-number: "063"
+  id-in-contest: E
+  title: 木と整数 / Integers on a Tree
+  url: https://atcoder.jp/contests/arc063/tasks/arc063_c
+  comment: | 
+    根付き木を使えば解法自体は簡単だが、実装がけっこう重い？私は重くなった。
+    私は結局少しバグらせてテストケースを見た。
