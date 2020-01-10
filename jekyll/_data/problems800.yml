@@ -14,3 +14,11 @@
   comment: | 
     根付き木を使えば解法自体は簡単だが、実装がけっこう重い？私は重くなった。
     私は結局少しバグらせてテストケースを見た。
+- contest: AGC
+  contest-number: "008"
+  id-in-contest: D
+  title: K-th K
+  url: https://atcoder.jp/contests/agc008/tasks/agc008_d
+  comment: | 
+    x_iたちを小さい順にソートして左から貪欲に数字を埋めていけば解けるが、
+    600～800で貪欲を出されると勝手に不安になりがち(?)。N <= 500という制約も不安を煽る。
