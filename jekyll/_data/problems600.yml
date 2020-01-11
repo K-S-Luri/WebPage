@@ -1,0 +1,9 @@
+- contest: ""
+  contest-number: "第6回 ドワンゴからの挑戦状 予選"
+  id-in-contest: B
+  title: Fusing Slimes
+  url: https://atcoder.jp/contests/dwacon6th-prelims/tasks/dwacon6th_prelims_b
+  comment: | 
+    期待値は線形性を気にしてやる。コンテストで解いたときは、x_iとx_{i + 1}を通る回数が、
+    1からN - 1までの整数を並べたときに、iの右にあってiより小さい数の転倒数(を修正したもの)で
+    表せると思ったのだが、それは間違いで2時間終わってしまった。
